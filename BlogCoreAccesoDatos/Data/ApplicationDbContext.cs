@@ -11,6 +11,9 @@ namespace AppBlogCore.Data
         {
         }
 
-        public DbSet<Categoria> Categoria { get; set; }
+        //Aca se agregan los modelos para una migracion exitosa.
+        public DbSet<Categoria> Categoria { get; set; } 
+       
+        public DbSet<Articulo> Articulo { get; set; }
     }
 }
