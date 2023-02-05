@@ -5,26 +5,37 @@ $(document).ready(function () {
 })
 
 function cargarDatatable() {
-    dataTable = $("#tblArticulos").DataTable({
+    dataTable = $("#tblSliders").DataTable({
         "ajax": {
-            "url": "/admin/articulos/GetAll",
+            "url": "/admin/sliders/GetAll",
             "type": "GET",
             "datatype": "json"
         },
         "columns": [
             { "data": "id", "width": "5%", },
             { "data": "nombre", "width": "25%", },
-            { "data": "categoria.nombre", "width": "15%", },
-            { "data": "fechaCreacion", "width": "15%", },
+            /*EMPIEZA EDICION ESTADO*/
+            {
+                "data": "estado",
+                "render": function (estadoActual) {
+                    if (estadoActual == true) {
+                        return "Activo"
+                    } else {
+                        return "Inactivo"
+                    }
+                },
+                "width": "20%"
+            },
+            /*CIERRA EDICION ESTADO*/
             {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center" >
-                                <a href="/Admin/Articulos/Edit/${data}" class="btn btn-success text-black" style= "cursor:pointer; width:100px;">
+                                <a href="/Admin/Sliders/Edit/${data}" class="btn btn-success text-black" style= "cursor:pointer; width:100px;">
                                 <i class= "far fa-edit"></i>Editar
                                 </a>
                                 &nbsp;
-                               <a onclick="Delete('/Admin/Articulos/Delete/${data}')" class="btn btn-danger text-white" style="cursor:pointer; width:100px;"
+                               <a onclick="Delete('/Admin/Sliders/Delete/${data}')" class="btn btn-danger text-white" style="cursor:pointer; width:100px;"
                                 <i class= "far fa-trash-alt"></i>Eliminar
                                 </a>
                             </div>

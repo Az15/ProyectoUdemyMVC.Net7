@@ -30,7 +30,6 @@ namespace BlogCore.Models
         [Required]
         public int CategoriaId { get; set; }
 
-        [Required]
         [ForeignKey("CategoriaId")]
         public Categoria Categoria { get; set; }
 

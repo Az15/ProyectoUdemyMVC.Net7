@@ -1,78 +1,60 @@
-﻿@model BlogCore.Models.ViewModels.ArticuloVM
+﻿@model BlogCore.Models.Slider
 
 @{
-    ViewData["Title"] = "Crear Un Nuevo Articulo";
+    ViewData["Title"] = "Crear Slider";
 }
 
 <br />
 <br />
 
-<h3 class="text-center">Crear un nuevo Articulo</h3>
+<h3 class="text-center">Crear una nueva Slider</h3>
 
 <form method="post" asp-action="Create" enctype="multipart/form-data">
     <div class="row px-2  border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="col-10 offset-1 mt-4"> 
+        <div class="col-10 offset-1 mt-4">
 
 
             <div class="form-group row align-items-center justify-content-center">
                 <div class="col-6">
                     <label class="col-4">
-                        <label asp-for="Articulo.Nombre"></label>
+                        <label asp-for="Nombre"></label>
                     </label>
                 </div>
                 <div class="col-6">
-                    <input asp-for="Articulo.Nombre" class="form-control" placeholder="Ingrese el nombre del articulo." />
-                    <span asp-validation-for="Articulo.Nombre" class="text-danger"></span>
+                    <input asp-for="Nombre" class="form-control" placeholder="Ingrese el nombre del Slider." />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
                 </div>
 
             </div>
-
 
             <div class="form-group row align-items-center justify-content-center">
                 <div class="col-6 ">
                     <label class="col-4">
-                        <label asp-for="Articulo.Descripcion"></label>
+                        <label asp-for="Estado"></label>
                     </label>
                 </div>
 
                 <div class="col-6">
-                    <textarea asp-for="Articulo.Descripcion" class="form-control" placeholder="Ingrese detalle del articulo." style="height:300px;"></textarea>
-                    <span asp-validation-for="Articulo.Descripcion" class="text-danger"></span>
+                    <input asp-for="Estado" />
+                    <span asp-validation-for="Estado" class="text-danger"></span>
                 </div>
 
             </div>
-
-            <div class="form-group row align-items-center justify-content-center mt-2">
-                <div class="col-6 ">
-                    <label class="col-4">
-                        <label for="Categoria">Categoria</label>
-                    </label>
-                </div>
-
-                <div class="col-6">
-                    @Html.DropDownListFor(m => m.Articulo.CategoriaId, Model.ListaCategorias, "-Por favor seleccione una categoria-",
-                    new {@class = "form-control"})
-                </div>
-
-            </div>
-
-
 
             <div class="form-group row align-items-center justify-content-center mt-3">
                 <div class="col-6 ">
                     <label class="col-4">
-                        <label asp-for="Articulo.UrlImagen"></label>
+                        <label asp-for="UrlImagen"></label>
                     </label>
                 </div>
 
                 <div class="col-6">
                     <input type="file" name="archivos" id="subidaArchivo" class="form-control" />
+                    <span asp-validation-for="UrlImagen" class="text-danger"></span>
                 </div>
 
             </div>
-
-
 
             <div class="form-group row">
 
@@ -87,8 +69,11 @@
 </form>
 
 
- @section Scripts{
+@section Scripts{
 
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script src="https://cdn.tiny.cloud/1/qukxrn62f4bz0iv6z7enaelkkzuzugir28y709xit9xm659s/tinymce/5/tinymce.min.js"></script>
     <script>
         tinymce.init({
@@ -96,5 +81,6 @@
             plugins: `lists`,
             menubar: `file edit format`
 
-                } );
-    </script>    }
+        });
+    </script>
+}
