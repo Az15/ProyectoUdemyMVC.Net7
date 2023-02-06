@@ -9,12 +9,12 @@ namespace AppBlogCore.Areas.Admin.Controllers
     public class CategoriasController : Controller
     {
         private readonly IContenedorTrabajo _contenedorTrabajo;
-        private readonly ApplicationDbContext _context;
+       // private readonly ApplicationDbContext _context;
 
-        public CategoriasController(IContenedorTrabajo contenedorTrabajo, ApplicationDbContext context)
+        public CategoriasController(IContenedorTrabajo contenedorTrabajo)
         {
             _contenedorTrabajo = contenedorTrabajo;
-            _context = context;
+         //   _context = context;
         }
 
         [HttpGet]
