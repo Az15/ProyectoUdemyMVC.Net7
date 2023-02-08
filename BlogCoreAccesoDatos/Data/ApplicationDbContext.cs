@@ -17,5 +17,7 @@ namespace AppBlogCore.Data
         public DbSet<Articulo> Articulo { get; set; }
 
         public DbSet<Slider> Sliders { get; set; }
+
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }
