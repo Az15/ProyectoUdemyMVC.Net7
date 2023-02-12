@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting.Internal;
 
 namespace AppBlogCore.Areas.Admin.Controllers
 {
+   
     [Area("Admin")]
     public class ArticulosController : Controller
     {

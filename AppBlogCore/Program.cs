@@ -1,4 +1,5 @@
 using AppBlogCore.Data;
+using BlogCore.AccesoDatos.Data.Inicializador;
 using BlogCore.AccesoDatos.Data.Repository;
 using BlogCore.AccesoDatos.Data.Repository.IRepository;
 using BlogCore.Models;
@@ -17,13 +18,19 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.S
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultUI();
 builder.Services.AddControllersWithViews();
-
 //Agregar contenedor de trabajo(Inyeccion de dependencias.)
 builder.Services.AddScoped<IContenedorTrabajo, ContenedorTrabajo>();
+
+//Agregar Data Seending
+builder.Services.AddScoped<IinicializadorDB, InicializadorDB>();
+   
+
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -32,6 +39,11 @@ else
 {
     app.UseExceptionHandler("/Home/Error");
 }
+//Agregamos el metodo Inicializar. Hay que probarlo.
+
+//Continuacion de Seending
+SeedDatabase();
+
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -44,3 +56,15 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.Run();
+
+
+
+//Continuacion de Seending
+void SeedDatabase() 
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IinicializadorDB>();
+        dbInitializer.Inicializar();
+    }
+}

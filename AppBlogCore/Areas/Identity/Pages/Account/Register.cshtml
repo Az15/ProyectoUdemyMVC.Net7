@@ -55,16 +55,20 @@
             </div>
 
             <!--Selector de roles-->
+            @if (User.IsInRole(CNT.Admin))
+            {
+                <div class="form-group row">
+                    <div class="col-6"><h4 class="text-center ">Seleccionar Rol de Usuario:</h4></div>
+                    <br />
+                    <div class="col-5">
+                        <input type="radio" name="radUsuarioRole" value="@CNT.Admin" />@CNT.Admin
+                        <input type="radio" name="radUsuarioRole" value="@CNT.Usuario" />@CNT.Usuario
+                    </div>
 
-            <div class="form-group row">
-                <div class="col-6"><h4 class="text-center ">Seleccionar Rol de Usuario:</h4></div>
-                <br />
-                <div class="col-5">
-                    <input type="radio" name="radUsuarioRole" value="@CNT.Admin" />@CNT.Admin
-                     <input type="radio" name="radUsuarioRole" value="@CNT.Usuario" />@CNT.Usuario
-                </div>                           
+                </div>
+            }
 
-            </div>
+           
 
 
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Registro</button>
